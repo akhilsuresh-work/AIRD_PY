@@ -1,13 +1,76 @@
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AIRD</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
-<link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}" />
+<body>
 
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'login:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">AIRD</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'login:airdlogin' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid text-right">
+  <div class="row content">
+      <div class="pull-right text-center">
+          <div class="well">
+             <div class="form">
+                        <form class = "form-signin" action="{% url 'login:airdlogin' %}" method="post">
+                            {% csrf_token %}
+                            <h2 class="form-signin-heading">AIRD SIGNUP</h2>
+                            <div class="form-group">
+                                <label class="" for="username">User Name</label>
+                                <div class="">
+                                    <input type="text" class="form-control" name="username" placeholder="username" required autofocus>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="" for="password">Password</label>
+                                <div class="">
+                                    <input type="password" class="form-control" id="pwd" name="password" required placeholder="password" >
+                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg">Sign in</button>
+                                </div>
+                            </div>
+                        </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
